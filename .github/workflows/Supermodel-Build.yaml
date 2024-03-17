@@ -16,9 +16,8 @@ jobs:
     - name: Install MSYS2 and dependencies
       run: |
        choco install msys2 -y
-       MSYS2_INSTALL_PATH=$(where.exe msys2_shell.cmd)
-       $MSYS2_INSTALL_PATH -lc "pacman -Syuu --noconfirm" &&
-       $MSYS2_INSTALL_PATH -lc "pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-make mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_net"
+       msys2_shell.cmd -defterm -no-start -mingw64 -c "pacman -Syuu --noconfirm"
+       msys2_shell.cmd -defterm -no-start -mingw64 -c "pacman -S --noconfirm mingw-w64-x86_64-gcc mingw-w64-x86_64-make mingw-w64-x86_64-SDL2 mingw-w64-x86_64-SDL2_net"
        
     - name: Set up MSYS2 environment variables
       run: |
